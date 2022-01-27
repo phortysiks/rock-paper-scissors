@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    background-color: #E6EEF8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #E6EEF8;
+    color: #3B4654;
+    max-height: 90vh;
+    margin: 5vh auto 5vh auto;
+    border-radius: 3rem;
+    box-shadow: 0.5rem 0.5rem 0.5rem #BCC6D2, -0.5rem -0.5rem 0.5rem #F6FAFF;
+}
+
+.heading {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    font-size: 3rem;
+    color: #8F949B;
+    text-align: center;
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 4rem;
+    padding: 3rem;
+}
+
+.button {
+    background-color: #E6EEF8;
+    min-width: 100px;
+    padding: 1rem;
+    cursor: pointer;
+    color: #8F949B;
+    font-size: 1.25rem;
+    font-family: 'Roboto', sans-serif;
+    border: none;
+    border-radius: 3rem;
+    box-shadow: 0.5rem 0.5rem 10px #BCC6D2, -0.5rem -0.5rem 0.5rem #F6FAFF;
+    transition: all 250ms ease-in-out;
+}
+
+.button:hover {
+    outline: none;
+    box-shadow: 1rem 1rem 1rem #BCC6D2, -1rem -1rem 1rem #F6FAFF;
+}
+
+.scoreboard {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 3rem 0 3rem;
+    width: 100%;
+}
+
+.scorecard {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.score-title, #player-score, #computer-score, .rules {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 2rem;
+    color: inherit;
+}
+
+.winner {
+    color: rgb(38, 173, 173);
+    border: none;
+    border-radius: 3rem;
+    box-shadow: 0.5rem 0.5rem 10px #BCC6D2, -0.5rem -0.5rem 0.5rem #F6FAFF;
+    transition: all 500ms ease-in-out;
+}
+
+.draw {
+    color: rgb(38, 173, 173);
+}
+
+#player-choice, #computer-choice {
+    font-size: 1rem;
+    font-style: italic;
+    color: #8F949B;
+}
+
+#reload {
+    padding: 1.3rem;
+}

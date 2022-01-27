@@ -5,54 +5,77 @@ function computerPlay() {
     return choices[computerChoice];
 }
 
-function playerPlay() {
-    let rawInput = prompt("What is your choice? ");
-    let playerChoice = rawInput.toLowerCase();
-    if (choices.includes(playerChoice)) {
-        return playerChoice
-    } else {
-        console.log("Invalid selection. Please try again.");
-        return playerPlay();
-    }
+let playerChoice = null;
+
+function getPlayerChoice(e) {
+    let playerChoice = (e.target.textContent).toLowerCase();
+    round(computerPlay(), playerChoice)
 }
 
 let playerScore = 0;
 let computerScore = 0;
 
-function round() {
-    let computerSelection = computerPlay();
-    let playerSelection = playerPlay();
-    if (computerSelection == playerSelection) {
-        playerScore++;
-        computerScore++;
-        return `Tie! You both selected ${playerSelection}.`;
-    } else if ((computerSelection == "rock" && playerSelection == "scissors") || (computerSelection == "scissors" && playerSelection == "paper") || (computerSelection == "paper" && playerSelection == "rock")) {
-        computerScore++;
-        return `You lost as ${computerSelection} beat your ${playerSelection}.`;
-    } else if ((computerSelection == "scissors" && playerSelection == "rock") || (computerSelection == "paper" && playerSelection == "scissors") || (computerSelection == "rock" && playerSelection == "paper")) {
-        playerScore++;
-        return `You won as your ${playerSelection} beat ${computerSelection}.`;
-    }
+function playerWin() {
+    let playerScorecard = document.querySelector('#player-scorecard');
+    let announce = document.querySelector('.rules')
+    playerScorecard.classList.add('winner');
+    announce.textContent = 'You are the winner!';
 }
 
-function game() {
-    console.log(round());
-    console.log(`Scores: Player - ${playerScore}, Computer - ${computerScore}.`);
-    console.log(round());
-    console.log(`Scores: Player - ${playerScore}, Computer - ${computerScore}.`);
-    console.log(round());
-    console.log(`Scores: Player - ${playerScore}, Computer - ${computerScore}.`);
-    console.log(round());
-    console.log(`Scores: Player - ${playerScore}, Computer - ${computerScore}.`);
-    console.log(round());
-    console.log(`Scores: Player - ${playerScore}, Computer - ${computerScore}.`);
-    if (playerScore > computerScore) {
-        console.log("You won! Thanks for playing.")
-    } else if (computerScore > playerScore) {
-        console.log("You lost, bad luck. Thanks for playing.")
-    } else if (computerScore == playerScore) {
-        console.log("Match tied! Thanks for playing.")
-    }
+function computerWin() {
+    let computerScorecard = document.querySelector('#computer-scorecard');
+    let announce = document.querySelector('.rules')
+    computerScorecard.classList.add('winner');
+    announce.textContent = 'Unlucky! Try again';
 }
 
-game();
+function draw() {
+    let computerScorecard = document.querySelector('#computer-scorecard');
+    let playerScorecard = document.querySelector('#player-scorecard');
+    let announce = document.querySelector('.rules')
+    playerScorecard.classList.add('draw');
+    computerScorecard.classList.add('draw');
+    announce.textContent = 'Match drawn!';
+}
+
+function reloadPage() {
+    window.location.reload();
+}
+
+function round(computerSelection, playerSelection) {
+    let updatedComputerScore = document.querySelector('#computer-score');
+    let updatedPlayerScore = document.querySelector('#player-score');
+    if (playerScore == 5 || computerScore == 5) {
+        return
+    } else {
+        if (computerSelection == playerSelection) {
+            playerScore++;
+            computerScore++;
+            updatedComputerScore.textContent = computerScore;
+            updatedPlayerScore.textContent = playerScore;
+        } else if ((computerSelection == "rock" && playerSelection == "scissors") || (computerSelection == "scissors" && playerSelection == "paper") || (computerSelection == "paper" && playerSelection == "rock")) {
+            computerScore++;
+            updatedComputerScore.textContent = computerScore;
+        } else if ((computerSelection == "scissors" && playerSelection == "rock") || (computerSelection == "paper" && playerSelection == "scissors") || (computerSelection == "rock" && playerSelection == "paper")) {
+            playerScore++;
+            updatedPlayerScore.textContent = playerScore;
+        }
+        document.querySelector('#computer-choice').textContent = computerSelection;
+        document.querySelector('#player-choice').textContent = playerSelection;
+        if (playerScore == 5 && computerScore == 5) {
+            draw();
+            return
+        } else if (playerScore == 5) {
+            playerWin();
+            return
+        } else if (computerScore == 5) {
+            computerWin();
+            return
+        }
+}};
+
+const buttons = document.querySelectorAll('.play-btn');
+buttons.forEach(button => {button.addEventListener('click', getPlayerChoice)});
+
+const reload = document.querySelector('#reload');
+reload.onclick = reloadPage;

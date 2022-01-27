@@ -4,9 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,100;1,300&family=Titillium+Web:wght@200;400;600&display=swap" rel="stylesheet"> 
     <title>Rock Paper Scissors</title>
 </head>
 <body>
+    <h1 class="heading">ROCK, PAPER, SCISSORS</h1>
+    <div class="main">
+        <div class="button-container">
+            <button class="play-btn button">ROCK</button>
+            <button class="play-btn button">PAPER</button>
+            <button class="play-btn button">SCISSORS</button>
+        </div>
+        <div class="scoreboard">
+            <div class="scorecard" id="computer-scorecard">
+                <h3 class="score-title">
+                    Computer
+                </h3>
+                <p id="computer-choice"></p>
+                <p id="computer-score">0</p>
+            </div>
+            <div class="scorecard" id="player-scorecard">
+                <h3 class="score-title">
+                    Player
+                </h3>
+                <p id="player-choice"></p>
+                <p id="player-score">0</p>
+            </div>
+        </div>
+        <p class="rules">First to 5!</p>
+    </div>
+    <button id="reload" class="button">PLAY AGAIN</button>
     <script src="index.js"></script>
 </body>
 </html>
